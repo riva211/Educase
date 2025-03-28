@@ -14,8 +14,13 @@ function Register() {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    const { id, value, type, name } = e.target;
+    
+    if (type === "radio") {
+      setFormData({ ...formData, [name]: value }); // Use 'name' for radio buttons
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
   };
 
   const validateForm = () => {
